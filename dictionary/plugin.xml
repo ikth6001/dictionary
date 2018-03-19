@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	
+	<extension
+		point="org.eclipse.ui.commands">
+		<command
+			defaultHandler="com.ikth.app.dictionary.handler.KorToEngTranslator"
+			id="com.ikth.app.dictionary.handler.KorToEngTranslator"
+			name="TranslateKorToEng"/>		
+	</extension>
+	
+	<extension
+		point="org.eclipse.ui.bindings">
+		<key
+			sequence="Ctrl+Shift+Z"
+			commandId="com.ikth.app.dictionary.handler.KorToEngTranslator"
+			schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+	</extension>
+</plugin>
