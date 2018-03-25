@@ -17,7 +17,14 @@ public class DictionaryHover implements IJavaEditorTextHover
 		
 		if(isTargetWord(word))
 		{
-			return TranslatorManager.instance().getLanguageTranslator().translate(word);
+			try 
+			{
+				return TranslatorManager.instance().getLanguageTranslator().translate(word);
+			} 
+			catch (Exception e) 
+			{
+				PluginLogger.logError("Translation process is failed.", e);
+			}
 		}
 		
 		return null;

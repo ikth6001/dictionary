@@ -7,7 +7,7 @@ public interface ILangTranslator
 	 * @param word 번역할 단어
 	 * @return 번역된 단어
 	 */
-	String translate(String word);
+	String translate(String word) throws Exception;
 	
 	/**
 	 * 문자열이 번역 대상 단어인지 확인한다.
