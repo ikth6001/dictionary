@@ -1,25 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-	
-	<!--
-	<extension
-		point="org.eclipse.ui.commands">
-		<command
-			defaultHandler="com.ikth.app.dictionary.handler.EngToKorTranslator"
-			id="com.ikth.app.dictionary.handler.EngToKorTranslator"
-			name="TranslateKorToEng"/>		
-	</extension>
-	
-	<extension
-		point="org.eclipse.ui.bindings">
-		<key
-			sequence="Ctrl+Shift+Z"
-			commandId="com.ikth.app.dictionary.handler.EngToKorTranslator"
-			schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
-	</extension>
-	-->
-	
+	<extension-point id="com.ikth.app.dictionary.translator" name="LangTranslator" schema="schema/com.ikth.app.dictionary.translator.exsd"/>
+
 	<extension
 		point="org.eclipse.jdt.ui.javaEditorTextHovers">
 		<hover

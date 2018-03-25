@@ -6,6 +6,8 @@ import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.Region;
 import org.eclipse.ui.IEditorPart;
 
+import com.ikth.app.dictionary.translator.TranslatorManager;
+
 public class DictionaryHover implements IJavaEditorTextHover
 {
 	@Override
@@ -13,12 +15,11 @@ public class DictionaryHover implements IJavaEditorTextHover
 	{
 		final String word= getTargetWord(region.getOffset(), txtViewer.getDocument().get());
 		
-		if(isEnglishWord(word))
+		if(isTargetWord(word))
 		{
-			return word;
+			return TranslatorManager.instance().getLanguageTranslator().translate(word);
 		}
 		
-		System.out.println("It is not an english word");
 		return null;
 	}
 
@@ -75,15 +76,8 @@ public class DictionaryHover implements IJavaEditorTextHover
 		return contents.substring(start, end);
 	}
 	
-	private boolean isEnglishWord(String word)
+	private boolean isTargetWord(String word)
 	{
-		final String REGEX_ENGLISH= "[a-zA-Z]+";
-		
-		if(word == null)
-		{
-			return false;
-		}
-		
-		return word.matches(REGEX_ENGLISH);
+		return TranslatorManager.instance().getLanguageTranslator().isTargetWord(word);
 	}
 }
