@@ -64,7 +64,7 @@ public class DictionaryHover implements IJavaEditorTextHover
 		
 		for(int i=offset; i>=0; i--)
 		{
-			if(Character.isWhitespace(contents.charAt(i)))
+			if( !Character.isAlphabetic(contents.charAt(i)) )
 			{
 				start= i + 1;
 				break;
@@ -73,7 +73,7 @@ public class DictionaryHover implements IJavaEditorTextHover
 		
 		for(int i=offset; i<contents.length(); i++)
 		{
-			if(Character.isWhitespace(contents.charAt(i)))
+			if( !Character.isAlphabetic(contents.charAt(i)) )
 			{
 				end= i;
 				break;

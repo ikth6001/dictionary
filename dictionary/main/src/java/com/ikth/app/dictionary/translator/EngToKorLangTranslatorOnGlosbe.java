@@ -30,14 +30,27 @@ public class EngToKorLangTranslatorOnGlosbe implements ILangTranslator
 			}
 
 			JSONObject contents= tuc.getJSONObject(0);
-			String translated= contents.getJSONObject("phrase").getString("text");
+			
+			String translated= null;
 			String meaning= "";
 			
-			JSONArray meanings= contents.getJSONArray("meanings");
-			for(int i=0; i<meanings.length();)
+			if(contents.has("phrase"))
 			{
-				meaning= meanings.getJSONObject(0).getString("text");
-				break;
+				translated= contents.getJSONObject("phrase").getString("text");
+			}
+			else
+			{
+				return "<b>There are no translation information.</b>";
+			}
+			
+			if(contents.has("meanings"))
+			{
+				JSONArray meanings= contents.getJSONArray("meanings");
+				for(int i=0; i<meanings.length();)
+				{
+					meaning= meanings.getJSONObject(0).getString("text");
+					break;
+				}
 			}
 			
 			return MessageFormat.format(RESULT_FORMAT, translated, meaning);
