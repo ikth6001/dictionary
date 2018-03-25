@@ -8,7 +8,8 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.texteditor.ITextEditor;
 
-public class KorToEngTranslator extends AbstractHandler
+@Deprecated
+public class EngToKorTranslator extends AbstractHandler
 {
 
 	@Override
@@ -23,14 +24,6 @@ public class KorToEngTranslator extends AbstractHandler
 		
 		@SuppressWarnings("unused")
 		ISelection selection= txtEditor.getSelectionProvider().getSelection();
-		
-		/**
-		 * TODO
-		 * 1. 현재 텍스트 에디터의 블록된 단어 찾기
-		 * 2. 해당 단어가 영어인지 확인
-		 * 3. 영어인 경우 네이버 오픈 API를 통해 뜻 검색
-		 * 4. 표현(자바 에디터의 Javadoc을 보여주는 방식이 좋을 듯)
-		 */
 		
 		return null;
 	}

@@ -2,11 +2,12 @@
 <?eclipse version="3.4"?>
 <plugin>
 	
+	<!--
 	<extension
 		point="org.eclipse.ui.commands">
 		<command
-			defaultHandler="com.ikth.app.dictionary.handler.KorToEngTranslator"
-			id="com.ikth.app.dictionary.handler.KorToEngTranslator"
+			defaultHandler="com.ikth.app.dictionary.handler.EngToKorTranslator"
+			id="com.ikth.app.dictionary.handler.EngToKorTranslator"
 			name="TranslateKorToEng"/>		
 	</extension>
 	
@@ -14,7 +15,18 @@
 		point="org.eclipse.ui.bindings">
 		<key
 			sequence="Ctrl+Shift+Z"
-			commandId="com.ikth.app.dictionary.handler.KorToEngTranslator"
+			commandId="com.ikth.app.dictionary.handler.EngToKorTranslator"
 			schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+	</extension>
+	-->
+	
+	<extension
+		point="org.eclipse.jdt.ui.javaEditorTextHovers">
+		<hover
+			activate="true"
+			id="com.ikth.app.dictionary.DictionaryHover"
+			class="com.ikth.app.dictionary.DictionaryHover"
+			label="EngToKorTranslator"
+			description="This is a hover to translate english word to korean"/>
 	</extension>
 </plugin>
