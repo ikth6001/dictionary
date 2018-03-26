@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension-point id="com.ikth.app.dictionary.translator" name="LangTranslator" schema="schema/com.ikth.app.dictionary.translator.exsd"/>
+
+	<extension
+		point="org.eclipse.jdt.ui.javaEditorTextHovers">
+		<hover
+			activate="true"
+			id="com.ikth.app.dictionary.DictionaryHover"
+			class="com.ikth.app.dictionary.DictionaryHover"
+			label="EngToKorTranslator"
+			description="This is a hover to translate english word to korean"/>
+	</extension>
+</plugin>
