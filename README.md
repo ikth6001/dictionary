@@ -29,7 +29,8 @@
 사전을 옵션화 하도록 확장점 재구현 및 Preference page를 추가 하였습니다.
 ![dictionarySelectionPreference.png](image/dictionarySelectionPreference.png.png)
 
-
+TODO 작업
+1. 네이버 Open API를 활용한 사전 구현 완료.
 
 참고
 glosbe API : https://glosbe.com/a-api
