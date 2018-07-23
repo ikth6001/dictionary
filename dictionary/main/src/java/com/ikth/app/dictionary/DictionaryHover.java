@@ -6,6 +6,8 @@ import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.Region;
 import org.eclipse.ui.IEditorPart;
 
+import com.ikth.app.dictionary.preference.DictionaryPreferenceManager;
+import com.ikth.app.dictionary.translator.ILangTranslator;
 import com.ikth.app.dictionary.translator.TranslatorManager;
 
 public class DictionaryHover implements IJavaEditorTextHover
@@ -19,7 +21,7 @@ public class DictionaryHover implements IJavaEditorTextHover
 		{
 			try 
 			{
-				return TranslatorManager.instance().getLanguageTranslator().translate(word);
+				return getTranslator().translate(word);
 			} 
 			catch (Exception e) 
 			{
@@ -85,6 +87,12 @@ public class DictionaryHover implements IJavaEditorTextHover
 	
 	private boolean isTargetWord(String word)
 	{
-		return TranslatorManager.instance().getLanguageTranslator().isTargetWord(word);
+		return getTranslator().isTargetWord(word);
+	}
+	
+	private ILangTranslator getTranslator()
+	{
+		return TranslatorManager.instance().getLanguageTranslator(
+			   DictionaryPreferenceManager.instance().getSelectedTranslatorId());
 	}
 }

@@ -14,5 +14,11 @@ public interface ILangTranslator
 	 * @param word 대상인지 확인할 문자열
 	 * @return 번역 대상 여부
 	 */
-	boolean isTargetWord(String word);	
+	boolean isTargetWord(String word);
+	
+	/**
+	 * 복수개의 번역 모듈 구분자
+	 * @return
+	 */
+	String getId();
 }

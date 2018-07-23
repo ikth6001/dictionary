@@ -1,14 +1,16 @@
-package com.ikth.app.dictionary.translator;
+package com.ikth.app.dictionary.glosbe;
 
 import java.text.MessageFormat;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.ikth.app.dictionary.glosbe.GlosbeHttpClient;
+import com.ikth.app.dictionary.translator.ILangTranslator;
 
 public class EngToKorLangTranslatorOnGlosbe implements ILangTranslator
 {
+	public final static String ID= "Glosbe dictionary";
+	
 	@Override
 	public String translate(String word) throws Exception
 	{
@@ -75,5 +77,11 @@ public class EngToKorLangTranslatorOnGlosbe implements ILangTranslator
 	public static void main(String[] args) throws Exception {
 		EngToKorLangTranslatorOnGlosbe m= new EngToKorLangTranslatorOnGlosbe();
 		System.out.println(m.translate("apple"));
+	}
+
+	@Override
+	public String getId() 
+	{
+		return ID;
 	}
 }

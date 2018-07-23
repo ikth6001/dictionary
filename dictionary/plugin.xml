@@ -12,4 +12,22 @@
 			label="EngToKorTranslator"
 			description="This is a hover to translate english word to korean"/>
 	</extension>
+	
+	<extension
+		point="org.eclipse.ui.preferencePages">
+		<page
+			id="com.ikth.app.dictionary.preference.DictionarySelectPreferencePage"
+			class="com.ikth.app.dictionary.preference.DictionarySelectPreferencePage"
+			name="Dictionary configuration"/>
+	</extension>
+	
+	<extension
+		point="com.ikth.app.dictionary.translator">
+		<translator
+			class="com.ikth.app.dictionary.glosbe.EngToKorLangTranslatorOnGlosbe">
+		</translator>
+  <translator
+        class="com.ikth.app.dictionary.naver.EngToKorLangTranslatorOnNaver">
+  </translator>
+	</extension>
 </plugin>
