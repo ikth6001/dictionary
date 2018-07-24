@@ -10,6 +10,9 @@ import com.ikth.app.dictionary.PluginLogger;
 
 public class NaverOpenAPIClient 
 {
+	/**
+	 * 이 키 값이 오픈되는데... 크게 문제될 일은 없겠지..
+	 */
 	private final String PROP_CLIENT_ID= "X-Naver-Client-Id";
 	private final String PROP_CLIENT_SECRET= "X-Naver-Client-Secret";
 	private final String CLIENT_ID= "E8nExwsUoa5KswI1yt44";
