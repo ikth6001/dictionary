@@ -3,6 +3,8 @@ package com.ikth.app.dictionary;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
+import com.ikth.app.dictionary.cache.DictionaryCacheManager;
+
 /**
  * The activator class controls the plug-in life cycle
  */
@@ -27,6 +29,8 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
+		
+		DictionaryCacheManager.instance();
 	}
 
 	/*
