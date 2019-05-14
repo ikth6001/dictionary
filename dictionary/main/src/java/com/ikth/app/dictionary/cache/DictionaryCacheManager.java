@@ -1,9 +1,14 @@
 package com.ikth.app.dictionary.cache;
 
+import java.util.Optional;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+
+import com.ikth.app.dictionary.repository.HibernateDictionaryRepository;
+import com.ikth.app.dictionary.repository.IDictionaryRepository;
 
 public class DictionaryCacheManager {
 	
@@ -14,8 +19,9 @@ public class DictionaryCacheManager {
 	private final int STATUS_NOT_LOADED= 0;
 	private final int STATUS_LOADING= 1;
 	private final int STATUS_LOAD_COMPLETE= 2;
-	
 	private int status= STATUS_NOT_LOADED;
+
+	private IDictionaryRepository repository= new HibernateDictionaryRepository();
 	
 	public ICache<String, String> getDictionaryCache() throws Exception {
 		
@@ -58,10 +64,14 @@ public class DictionaryCacheManager {
 		 * TODO load database in background job.
 		 */
 		this.cache= new LRUCache<>(100);
+		
 		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
+			Optional.ofNullable(repository.findAll())
+					.ifPresent((dictionaries) -> dictionaries.stream().forEach((dict) -> cache.add(dict.getWord(), dict.getMeaning())));
+		} catch (Exception e) {
+			/** ignore */
 		}
+		
 		status= STATUS_LOAD_COMPLETE;
 		monitor.worked(1);
 		monitor.done();
