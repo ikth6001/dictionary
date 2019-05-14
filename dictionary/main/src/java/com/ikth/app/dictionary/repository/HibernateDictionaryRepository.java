@@ -3,10 +3,14 @@ package com.ikth.app.dictionary.repository;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import org.eclipse.core.runtime.Platform;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.osgi.framework.Bundle;
+
+import com.ikth.app.dictionary.Activator;
 
 public class HibernateDictionaryRepository implements IDictionaryRepository {
 	
@@ -35,8 +39,18 @@ public class HibernateDictionaryRepository implements IDictionaryRepository {
 		
 		Configuration configuration= new Configuration();
 		configuration.addAnnotatedClass(DictionaryEntity.class);
+		configuration.setProperty("hibernate.connection.url", getDerbyUrl());
 		sessionFactory= configuration.configure().buildSessionFactory();
 		
+	}
+	
+	private String getDerbyUrl() {
+		
+//		Bundle bundle= Activator.getDefault().getBundle();
+		Bundle bundle= Platform.getBundle(Activator.PLUGIN_ID);
+		String repositoryPath= bundle.getDataFile("dictRepo").getAbsolutePath();
+		
+		return "jdbc:derby:" + repositoryPath + ";create=true";
 	}
 	
 	@Override

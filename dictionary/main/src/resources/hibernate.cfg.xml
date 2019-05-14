@@ -8,8 +8,8 @@
         <!--
         <property name="hibernate.connection.username">admin</property>
         <property name="hibernate.connection.password">admin</property>
-		-->
         <property name="hibernate.connection.url">jdbc:derby:C:\Users\taehoonkim\Desktop\repository;create=true</property>
+        -->
         <property name="hibernate.dialect">org.hibernate.dialect.DerbyDialect</property>
         <property name="show_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
