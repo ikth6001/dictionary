@@ -6,10 +6,16 @@ import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.Region;
 import org.eclipse.ui.IEditorPart;
 
+import com.ikth.app.dictionary.cache.DictionaryCacheManager;
+import com.ikth.app.dictionary.cache.ICache;
+import com.ikth.app.dictionary.preference.DictionaryPreferenceManager;
+import com.ikth.app.dictionary.translator.ILangTranslator;
 import com.ikth.app.dictionary.translator.TranslatorManager;
 
 public class DictionaryHover implements IJavaEditorTextHover
 {
+	private ICache<String, String> cache= null;
+	
 	@Override
 	public String getHoverInfo(ITextViewer txtViewer, IRegion region) 
 	{
@@ -19,7 +25,27 @@ public class DictionaryHover implements IJavaEditorTextHover
 		{
 			try 
 			{
-				return TranslatorManager.instance().getLanguageTranslator().translate(word);
+				if(cache == null) {
+					
+					try {
+						cache= DictionaryCacheManager.instance().getDictionaryCache();
+					} catch (Exception e) {
+						/** ignore */
+						return getTranslator().translate(word);
+					}
+				}
+				
+				String meaning= cache.get(word);
+				
+				if(meaning != null) {
+					
+					return meaning;
+				}
+				
+				meaning= getTranslator().translate(word);
+				cache.add(word, meaning);
+				
+				return meaning;
 			} 
 			catch (Exception e) 
 			{
@@ -85,6 +111,12 @@ public class DictionaryHover implements IJavaEditorTextHover
 	
 	private boolean isTargetWord(String word)
 	{
-		return TranslatorManager.instance().getLanguageTranslator().isTargetWord(word);
+		return getTranslator().isTargetWord(word);
+	}
+	
+	private ILangTranslator getTranslator()
+	{
+		return TranslatorManager.instance().getLanguageTranslator(
+			   DictionaryPreferenceManager.instance().getSelectedTranslatorId());
 	}
 }

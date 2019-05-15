@@ -1,0 +1,20 @@
+apply plugin: 'java'
+
+configurations {
+	deps
+}
+
+dependencies {
+	deps group: 'org.apache.derby', name: 'derbyclient', version: '10.12.1.1'
+	deps group: 'org.apache.derby', name: 'derby', version: '10.12.1.1'
+	deps group: 'org.hibernate', name: 'hibernate-core', version: '5.2.2.Final'
+}
+
+task downloadLib(type: Copy) {
+	from configurations.deps
+	into 'lib'
+}
+
+repositories {
+	jcenter()
+}
